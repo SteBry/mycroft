@@ -1,25 +1,26 @@
 import store from './state';
 
 /* -- ACTIONS -- */
-const DUMMY = "DUMMY";
+const LOG_SCALING = "LOG_SCALING";
 
 /* -- INITIAL STATE -- */
 const initialState = {
-    //TODO::add states
+    scaling: 12
 }
 
 /* -- ACTION CREATORS -- */
-export function dummy() {
+export function logScaling() {
     return {
-        type: DUMMY
+        type: LOG_SCALING
     }
 }
 
 /* -- REDUX REDUCER -- */
 const timelineReducer = (state = initialState, action) => {
     switch(action.type) {
-        case DUMMY:
-            break;
+        case LOG_SCALING:
+            console.log('scaling is: ', state.scaling);
+            return state;
         default:
             return state;
     }
