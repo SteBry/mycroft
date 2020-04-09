@@ -1,0 +1,23 @@
+.main {
+    left: 5vw;
+    right: 5vw;
+    height: 500px;
+    position: absolute;
+    bottom: 10px;
+    background-color: rgb(216, 216, 216);
+    overflow: scroll;
+    border: black;
+}
+
+.sliderbox {
+    top: 10px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    width: 200vw;
+    background-color: rgb(106, 158, 255);
+}
+
+.dropdown {
+    left: 10px;
+}
