@@ -11,15 +11,9 @@ class Timeline extends Component {
 
     logThis (a) {
         //this.props.funcDummy();
-        if (a === 1) {
-            console.log('1');
-        } else if (a === 2) {
-            console.log('2');
-        } else {
-            console.log('3');
-        }
+        console.log(a);
     }
-
+    
     render() { 
         return (
             <React.Fragment>
@@ -27,7 +21,7 @@ class Timeline extends Component {
                 <DropdownButton title={"Time scale"}>
                     {["12 Hours", "24 Hours", "36 Hours"].map((i) => {
                         return (
-                            <Dropdown.Item onClick={(a) => this.logThis(parseInt(1))}>
+                            <Dropdown.Item onClick={(a) => this.logThis(i.split(' ')[0])}>
                                 {i}
                             </Dropdown.Item>
                         );
