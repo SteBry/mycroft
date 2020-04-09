@@ -14,7 +14,7 @@ class Timeline extends Component {
         //this.props.funcDummy();
         console.log(a);
     }
-
+    
     render() { 
         return (
             <div className={styles.main}>
