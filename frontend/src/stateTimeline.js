@@ -5,7 +5,7 @@ const LOG_SCALING = "LOG_SCALING";
 
 /* -- INITIAL STATE -- */
 const initialState = {
-    scaling: 12
+    scaling: 1
 }
 
 /* -- ACTION CREATORS -- */
