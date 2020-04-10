@@ -19,10 +19,13 @@ class Timeline extends Component {
         return (
             <div className={styles.main}>
                 <div className={styles.topbar}>
-                    <DropdownButton className={styles.dropdown} title={"Time scale"}>
+                    <DropdownButton
+                    className={styles.dropdown}
+                    title={"Time scale"}>
                         {["12 Hours", "24 Hours", "36 Hours"].map((i) => {
                             return (
-                                <Dropdown.Item onClick={(a) => this.logThis(i.split(' ')[0])}>
+                                <Dropdown.Item onClick={(a) => this.logThis(i.split(' ')[0])}
+                                key={i}>
                                     {i}
                                 </Dropdown.Item>
                             );
@@ -31,7 +34,19 @@ class Timeline extends Component {
                 </div>
                 <div className={styles.sliderbox}>
                     <div className ={styles.slider}>
-                        <p className={styles.date}> Tidslinje </p>
+                        {["5px", "10px", "15px", "20px"].map((i) => {
+                            return (
+                                <div style={{
+                                    position: "absolute",
+                                    left: i,
+                                    width: "2px",
+                                    height: "100%",
+                                    backgroundColor: "black"
+                                }} key={i}>
+                                    
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
