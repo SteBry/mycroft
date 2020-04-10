@@ -31,7 +31,7 @@ class Timeline extends Component {
                 </div>
                 <div className={styles.sliderbox}>
                     <div className ={styles.slider}>
-                        <p> Hej </p>
+                        <p> Tidslinje </p>
                     </div>
                 </div>
             </div>
