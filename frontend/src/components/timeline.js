@@ -18,18 +18,21 @@ class Timeline extends Component {
     render() { 
         return (
             <div className={styles.main}>
-                <p> Timeline Component </p>
-                <DropdownButton className={styles.dropdown} title={"Time scale"}>
-                    {["12 Hours", "24 Hours", "36 Hours"].map((i) => {
-                        return (
-                            <Dropdown.Item onClick={(a) => this.logThis(i.split(' ')[0])}>
-                                {i}
-                            </Dropdown.Item>
-                        );
-                    })}
-                </DropdownButton>
-                <div className ={styles.sliderbox}>
-                    <p> Hej </p>
+                <div className={styles.topbar}>
+                    <DropdownButton className={styles.dropdown} title={"Time scale"}>
+                        {["12 Hours", "24 Hours", "36 Hours"].map((i) => {
+                            return (
+                                <Dropdown.Item onClick={(a) => this.logThis(i.split(' ')[0])}>
+                                    {i}
+                                </Dropdown.Item>
+                            );
+                        })}
+                    </DropdownButton>
+                </div>
+                <div className={styles.sliderbox}>
+                    <div className ={styles.slider}>
+                        <p> Hej </p>
+                    </div>
                 </div>
             </div>
         );
