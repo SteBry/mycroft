@@ -3254,7 +3254,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "._1Nw-nfkiBz8MqHYPUCtnBZ {\r\n    left: 10px;\r\n    right: 5vw;\r\n    height: 300px;\r\n    position: absolute;\r\n    bottom: 10px;\r\n    background-color: rgb(209, 0, 0);\r\n    padding: 0;\r\n    border: 1px solid;\r\n}\r\n\r\n.mZdPyFtPVgzTk75W4SzTm {\r\n    position: absolute;\r\n    width: 100%;\r\n    top: 0;\r\n    left: 0;\r\n    height: 16.5%;\r\n    border-bottom: 1px solid;\r\n    background-color: lightsteelblue;\r\n}\r\n\r\n.koHZyci4kAmL3P-kvB_tX {\r\n    top: 5px;\r\n    left: 5px;\r\n    width: 200px;\r\n}\r\n\r\n._3XExrBxght-p4AZ-WZRIRi {\r\n    position: absolute;\r\n    bottom: 0;\r\n    height: 83.5%;\r\n    width: 100%;\r\n    /*border: 2px solid;*/\r\n    overflow: auto;\r\n    background-color: rgb(106, 158, 255);\r\n}\r\n\r\n._1Qba7gLjTSC6Ud7Xlrdbs9 {\r\n    position: relative;\r\n    height: 100%;\r\n    width: 200%;\r\n    /*border: 1px solid;*/\r\n    background-color: rgb(106, 158, 255);\r\n}\r\n\r\n.X3Y7zgxEszNyzkUpH1WzN {\r\n    position: sticky;\r\n    left: 3px;\r\n}", ""]);
+exports.push([module.i, "._1Nw-nfkiBz8MqHYPUCtnBZ {\r\n    left: 10px;\r\n    right: 5vw;\r\n    height: 300px;\r\n    position: absolute;\r\n    bottom: 10px;\r\n    background-color: rgb(209, 0, 0);\r\n    padding: 0;\r\n    border: 1px solid;\r\n}\r\n\r\n.mZdPyFtPVgzTk75W4SzTm {\r\n    position: absolute;\r\n    width: 100%;\r\n    top: 0;\r\n    left: 0;\r\n    height: 16.5%;\r\n    border-bottom: 1px solid;\r\n    background-color: lightsteelblue;\r\n}\r\n\r\n.koHZyci4kAmL3P-kvB_tX {\r\n    top: 5px;\r\n    left: 5px;\r\n    width: 200px;\r\n}\r\n\r\n._3XExrBxght-p4AZ-WZRIRi {\r\n    position: absolute;\r\n    bottom: 0;\r\n    height: 83.5%;\r\n    width: 100%;\r\n    /*border: 2px solid;*/\r\n    overflow: auto;\r\n    background-color: rgb(106, 158, 255);\r\n}\r\n\r\n._1Qba7gLjTSC6Ud7Xlrdbs9 {\r\n    position: relative;\r\n    height: 100%;\r\n    /*border: 1px solid;*/\r\n    background-color: rgb(106, 158, 255);\r\n}\r\n\r\n.X3Y7zgxEszNyzkUpH1WzN {\r\n    position: sticky;\r\n    left: 3px;\r\n}", ""]);
 // Exports
 exports.locals = {
 	"main": "_1Nw-nfkiBz8MqHYPUCtnBZ",
@@ -59379,8 +59379,11 @@ function (_Component) {
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.sliderbox
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.slider
-      }, ["5px", "10px", "15px", "20px"].map(function (i) {
+        className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.slider,
+        style: {
+          width: "200%"
+        }
+      }, ["8.3%", "16.6%", "24.9%", "33.3%", "41.3%", "49.9%", "58.3%", "66.6%", "74.9%", "83.3%", "91.6%"].map(function (i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
             position: "absolute",
@@ -59401,7 +59404,7 @@ function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    scaling: state.timeline.scaling
+    scale: state.timeline.scale
   };
 }; //Forward Redux's dispatch function to React props
 
@@ -59410,7 +59413,20 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     funcDummy: function funcDummy() {
       return dispatch(Object(_stateTimeline__WEBPACK_IMPORTED_MODULE_4__["logScaling"])());
-    }
+    },
+    zoom: function (_zoom) {
+      function zoom() {
+        return _zoom.apply(this, arguments);
+      }
+
+      zoom.toString = function () {
+        return _zoom.toString();
+      };
+
+      return zoom;
+    }(function () {
+      return dispatch(zoom());
+    })
   };
 }; //Connect Redux with React
 
@@ -59812,27 +59828,69 @@ var playerReducer = function playerReducer() {
 /*!******************************!*\
   !*** ./src/stateTimeline.js ***!
   \******************************/
-/*! exports provided: logScaling, default */
+/*! exports provided: logScaling, zoom, setStartTime, setEndTime, setTimeLimits, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logScaling", function() { return logScaling; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "zoom", function() { return zoom; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setStartTime", function() { return setStartTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setEndTime", function() { return setEndTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTimeLimits", function() { return setTimeLimits; });
 /* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./src/state.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 /* -- ACTIONS -- */
 
+var ZOOM = "ZOOM";
 var LOG_SCALING = "LOG_SCALING";
+var SET_START_TIME = "SET_START_TIME";
+var SET_END_TIME = "SET_END_TIME";
+var SET_TIME_LIMITS = "SET_TIME_LIMITS";
 /* -- INITIAL STATE -- */
 
 var initialState = {
-  scaling: 1
+  scale: 1,
+  startTime: undefined,
+  endTime: undefined,
+  timeSpan: 12 * 60 * 60 * 1000 //12hrs in ms
+
 };
 /* -- ACTION CREATORS -- */
 
 function logScaling() {
   return {
     type: LOG_SCALING
+  };
+}
+function zoom() {
+  return {
+    type: ZOOM
+  };
+}
+function setStartTime(date) {
+  return {
+    type: SET_START_TIME,
+    date: date
+  };
+}
+function setEndTime(date) {
+  return {
+    type: SET_END_TIME,
+    date: date
+  };
+}
+function setTimeLimits(startDate, endDate) {
+  return {
+    type: SET_TIME_LIMITS,
+    start: startDate,
+    end: endDate
   };
 }
 /* -- REDUX REDUCER -- */
@@ -59845,6 +59903,15 @@ var timelineReducer = function timelineReducer() {
     case LOG_SCALING:
       console.log('scaling is: ', state.scaling);
       return state;
+
+    case SET_START_TIME:
+      return _objectSpread({}, state, {
+        startTime: action.date,
+        timeSpan: state.endTime.getTime() - action.date.getTime()
+      });
+
+    case ZOOM:
+      return {};
 
     default:
       return state;

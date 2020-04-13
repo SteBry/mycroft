@@ -24,7 +24,7 @@ class Timeline extends Component {
                     title={"Time scale"}>
                         {["12 Hours", "24 Hours", "36 Hours"].map((i) => {
                             return (
-                                <Dropdown.Item onClick={(a) => this.logThis(i.split(' ')[0])}
+                                <Dropdown.Item onClick={(a) => this.props.zoom(parseInt(i.split(' ')[0]))}
                                 key={i}>
                                     {i}
                                 </Dropdown.Item>
@@ -33,13 +33,13 @@ class Timeline extends Component {
                     </DropdownButton>
                 </div>
                 <div className={styles.sliderbox}>
-                    <div className ={styles.slider}>
-                        {["5px", "10px", "15px", "20px"].map((i) => {
+                    <div className={styles.slider} style={{width: this.props.scale}}>
+                        {["8.3%", "16.6%", "24.9%", "33.3%", "41.3%", "49.9%", "58.3%", "66.6%", "74.9%", "83.3%", "91.6%"].map((i) => {
                             return (
                                 <div style={{
                                     position: "absolute",
                                     left: i,
-                                    width: "2px",
+                                    width: "1px",
                                     height: "100%",
                                     backgroundColor: "black"
                                 }} key={i}>
@@ -57,14 +57,15 @@ class Timeline extends Component {
 //Map Redux states to React props
 const mapStateToProps = state => {
     return {
-        scaling: state.timeline.scaling
+        scale: state.timeline.scale
     }
 }
 
 //Forward Redux's dispatch function to React props
 const mapDispatchToProps = dispatch => {
     return {
-        funcDummy: () => dispatch(logScaling())
+        funcDummy: () => dispatch(logScaling()),
+        zoom: () => dispatch(zoom())
     }
 }
 
