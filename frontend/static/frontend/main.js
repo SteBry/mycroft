@@ -59377,13 +59377,13 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
         className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.dropdown,
         title: this.props.scale + " Hours"
-      }, [12, 24, 36].map(function (i) {
+      }, [12, 24, 36].map(function (hrs) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
           onClick: function onClick(a) {
-            return _this.props.zoom(i);
+            return _this.props.zoom(hrs);
           },
-          key: i
-        }, i + " Hours");
+          key: hrs
+        }, hrs + " Hours");
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.sliderbox
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

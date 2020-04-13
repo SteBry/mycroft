@@ -27,11 +27,11 @@ class Timeline extends Component {
                     <DropdownButton
                     className={styles.dropdown}
                     title={this.props.scale + " Hours"}>
-                        {[12, 24, 36].map((i) => {
+                        {[12, 24, 36].map((hrs) => {
                             return (
-                                <Dropdown.Item onClick={(a) => this.props.zoom(i)}
-                                key={i}>
-                                    {i + " Hours"}
+                                <Dropdown.Item onClick={(a) => this.props.zoom(hrs)}
+                                key={hrs}>
+                                    {hrs + " Hours"}
                                 </Dropdown.Item>
                             );
                         })}
