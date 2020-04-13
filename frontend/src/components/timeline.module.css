@@ -42,6 +42,13 @@
     background-color: rgb(106, 158, 255);
 }
 
+.line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: black;
+}
+
 .date {
     position: sticky;
     left: 3px;

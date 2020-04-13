@@ -9,10 +9,10 @@ const SET_TIME_LIMITS = "SET_TIME_LIMITS";
 
 /* -- INITIAL STATE -- */
 const initialState = {
-    scale: 1,
+    scale: 12,
     startTime: undefined,
     endTime: undefined,
-    timeSpan: 12*60*60*1000 //12hrs in ms
+    timeSpan: 36*60*60*1000 //12hrs in ms
 }
 
 /* -- ACTION CREATORS -- */

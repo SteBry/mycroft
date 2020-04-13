@@ -3254,7 +3254,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "._1Nw-nfkiBz8MqHYPUCtnBZ {\r\n    left: 10px;\r\n    right: 5vw;\r\n    height: 300px;\r\n    position: absolute;\r\n    bottom: 10px;\r\n    background-color: rgb(209, 0, 0);\r\n    padding: 0;\r\n    border: 1px solid;\r\n}\r\n\r\n.mZdPyFtPVgzTk75W4SzTm {\r\n    position: absolute;\r\n    width: 100%;\r\n    top: 0;\r\n    left: 0;\r\n    height: 16.5%;\r\n    border-bottom: 1px solid;\r\n    background-color: lightsteelblue;\r\n}\r\n\r\n.koHZyci4kAmL3P-kvB_tX {\r\n    top: 5px;\r\n    left: 5px;\r\n    width: 200px;\r\n}\r\n\r\n._3XExrBxght-p4AZ-WZRIRi {\r\n    position: absolute;\r\n    bottom: 0;\r\n    height: 83.5%;\r\n    width: 100%;\r\n    /*border: 2px solid;*/\r\n    overflow: auto;\r\n    background-color: rgb(106, 158, 255);\r\n}\r\n\r\n._1Qba7gLjTSC6Ud7Xlrdbs9 {\r\n    position: relative;\r\n    height: 100%;\r\n    /*border: 1px solid;*/\r\n    background-color: rgb(106, 158, 255);\r\n}\r\n\r\n.X3Y7zgxEszNyzkUpH1WzN {\r\n    position: sticky;\r\n    left: 3px;\r\n}", ""]);
+exports.push([module.i, "._1Nw-nfkiBz8MqHYPUCtnBZ {\r\n    left: 10px;\r\n    right: 5vw;\r\n    height: 300px;\r\n    position: absolute;\r\n    bottom: 10px;\r\n    background-color: rgb(209, 0, 0);\r\n    padding: 0;\r\n    border: 1px solid;\r\n}\r\n\r\n.mZdPyFtPVgzTk75W4SzTm {\r\n    position: absolute;\r\n    width: 100%;\r\n    top: 0;\r\n    left: 0;\r\n    height: 16.5%;\r\n    border-bottom: 1px solid;\r\n    background-color: lightsteelblue;\r\n}\r\n\r\n.koHZyci4kAmL3P-kvB_tX {\r\n    top: 5px;\r\n    left: 5px;\r\n    width: 200px;\r\n}\r\n\r\n._3XExrBxght-p4AZ-WZRIRi {\r\n    position: absolute;\r\n    bottom: 0;\r\n    height: 83.5%;\r\n    width: 100%;\r\n    /*border: 2px solid;*/\r\n    overflow: auto;\r\n    background-color: rgb(106, 158, 255);\r\n}\r\n\r\n._1Qba7gLjTSC6Ud7Xlrdbs9 {\r\n    position: relative;\r\n    height: 100%;\r\n    /*border: 1px solid;*/\r\n    background-color: rgb(106, 158, 255);\r\n}\r\n\r\n._1fHpOa4iCeP4D3apAn_Qfj {\r\n    position: absolute;\r\n    width: 1px;\r\n    height: 100%;\r\n    background-color: black;\r\n}\r\n\r\n.X3Y7zgxEszNyzkUpH1WzN {\r\n    position: sticky;\r\n    left: 3px;\r\n}", ""]);
 // Exports
 exports.locals = {
 	"main": "_1Nw-nfkiBz8MqHYPUCtnBZ",
@@ -3262,6 +3262,7 @@ exports.locals = {
 	"dropdown": "koHZyci4kAmL3P-kvB_tX",
 	"sliderbox": "_3XExrBxght-p4AZ-WZRIRi",
 	"slider": "_1Qba7gLjTSC6Ud7Xlrdbs9",
+	"line": "_1fHpOa4iCeP4D3apAn_Qfj",
 	"date": "X3Y7zgxEszNyzkUpH1WzN"
 };
 module.exports = exports;
@@ -59352,10 +59353,17 @@ function (_Component) {
   }
 
   _createClass(Timeline, [{
-    key: "logThis",
-    value: function logThis(a) {
-      //this.props.funcDummy();
-      console.log(a);
+    key: "getLinePlacements",
+    value: function getLinePlacements() {
+      var hrs = this.props.timeSpan / (60 * 60 * 1000);
+      var step = 100 / hrs;
+      var list_ = new Array(hrs - 1);
+
+      for (var j = 1; j < hrs; j++) {
+        list_.push(step * j + "%");
+      }
+
+      return list_;
     }
   }, {
     key: "render",
@@ -59368,32 +59376,29 @@ function (_Component) {
         className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.topbar
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
         className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.dropdown,
-        title: "Time scale"
-      }, ["12 Hours", "24 Hours", "36 Hours"].map(function (i) {
+        title: this.props.scale + " Hours"
+      }, [12, 24, 36].map(function (i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
           onClick: function onClick(a) {
-            return _this.logThis(i.split(' ')[0]);
+            return _this.props.zoom(i);
           },
           key: i
-        }, i);
+        }, i + " Hours");
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.sliderbox
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.slider,
         style: {
-          width: "200%"
+          width: this.props.timeSpan / (60 * 60 * 1000) / this.props.scale * 100 + "%"
         }
-      }, ["8.3%", "16.6%", "24.9%", "33.3%", "41.3%", "49.9%", "58.3%", "66.6%", "74.9%", "83.3%", "91.6%"].map(function (i) {
+      }, this.getLinePlacements().map(function (i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
-            position: "absolute",
-            left: i,
-            width: "2px",
-            height: "100%",
-            backgroundColor: "black"
+            left: i
           },
+          className: _timeline_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.line,
           key: i
-        });
+        }, " ");
       }))));
     }
   }]);
@@ -59404,7 +59409,8 @@ function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    scale: state.timeline.scale
+    scale: state.timeline.scale,
+    timeSpan: state.timeline.timeSpan
   };
 }; //Forward Redux's dispatch function to React props
 
@@ -59414,19 +59420,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     funcDummy: function funcDummy() {
       return dispatch(Object(_stateTimeline__WEBPACK_IMPORTED_MODULE_4__["logScaling"])());
     },
-    zoom: function (_zoom) {
-      function zoom() {
-        return _zoom.apply(this, arguments);
-      }
-
-      zoom.toString = function () {
-        return _zoom.toString();
-      };
-
-      return zoom;
-    }(function () {
-      return dispatch(zoom());
-    })
+    zoom: function zoom(hrs) {
+      return dispatch(Object(_stateTimeline__WEBPACK_IMPORTED_MODULE_4__["zoom"])(hrs));
+    }
   };
 }; //Connect Redux with React
 
@@ -59856,10 +59852,10 @@ var SET_TIME_LIMITS = "SET_TIME_LIMITS";
 /* -- INITIAL STATE -- */
 
 var initialState = {
-  scale: 1,
+  scale: 12,
   startTime: undefined,
   endTime: undefined,
-  timeSpan: 12 * 60 * 60 * 1000 //12hrs in ms
+  timeSpan: 36 * 60 * 60 * 1000 //12hrs in ms
 
 };
 /* -- ACTION CREATORS -- */
@@ -59869,9 +59865,10 @@ function logScaling() {
     type: LOG_SCALING
   };
 }
-function zoom() {
+function zoom(hrs) {
   return {
-    type: ZOOM
+    type: ZOOM,
+    hrs: hrs
   };
 }
 function setStartTime(date) {
@@ -59911,7 +59908,9 @@ var timelineReducer = function timelineReducer() {
       });
 
     case ZOOM:
-      return {};
+      return _objectSpread({}, state, {
+        scale: action.hrs
+      });
 
     default:
       return state;

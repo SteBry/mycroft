@@ -3,49 +3,44 @@ import {connect} from 'react-redux';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { logScaling } from '../stateTimeline';
+import { logScaling, zoom } from '../stateTimeline';
 
 import styles from './timeline.module.css';
 
 /* -- Timeline -- */
 class Timeline extends Component {
 
-    logThis (a) {
-        //this.props.funcDummy();
-        console.log(a);
+    getLinePlacements() {
+        var hrs = this.props.timeSpan/(60*60*1000);
+        var step = 100/hrs;
+        var list_ = new Array(hrs-1);
+        for (var j=1; j<hrs; j++) {
+            list_.push(step*j + "%");
+        }
+        return list_;
     }
     
-    render() { 
+    render() {
         return (
             <div className={styles.main}>
                 <div className={styles.topbar}>
                     <DropdownButton
                     className={styles.dropdown}
-                    title={"Time scale"}>
-                        {["12 Hours", "24 Hours", "36 Hours"].map((i) => {
+                    title={this.props.scale + " Hours"}>
+                        {[12, 24, 36].map((i) => {
                             return (
-                                <Dropdown.Item onClick={(a) => this.props.zoom(parseInt(i.split(' ')[0]))}
+                                <Dropdown.Item onClick={(a) => this.props.zoom(i)}
                                 key={i}>
-                                    {i}
+                                    {i + " Hours"}
                                 </Dropdown.Item>
                             );
                         })}
                     </DropdownButton>
                 </div>
                 <div className={styles.sliderbox}>
-                    <div className={styles.slider} style={{width: this.props.scale}}>
-                        {["8.3%", "16.6%", "24.9%", "33.3%", "41.3%", "49.9%", "58.3%", "66.6%", "74.9%", "83.3%", "91.6%"].map((i) => {
-                            return (
-                                <div style={{
-                                    position: "absolute",
-                                    left: i,
-                                    width: "1px",
-                                    height: "100%",
-                                    backgroundColor: "black"
-                                }} key={i}>
-                                    
-                                </div>
-                            );
+                    <div className={styles.slider} style={{width: ((this.props.timeSpan/(60*60*1000))/this.props.scale)*100 + "%"}}>
+                        {this.getLinePlacements().map((i) => {
+                            return ( <div style={{left: i}} className={styles.line} key={i}> </div> );
                         })}
                     </div>
                 </div>
@@ -57,7 +52,8 @@ class Timeline extends Component {
 //Map Redux states to React props
 const mapStateToProps = state => {
     return {
-        scale: state.timeline.scale
+        scale: state.timeline.scale,
+        timeSpan: state.timeline.timeSpan
     }
 }
 
@@ -65,7 +61,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         funcDummy: () => dispatch(logScaling()),
-        zoom: () => dispatch(zoom())
+        zoom: (hrs) => dispatch(zoom(hrs))
     }
 }
 
